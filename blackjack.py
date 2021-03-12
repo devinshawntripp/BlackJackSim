@@ -68,13 +68,13 @@ class BlackJackGame:
     winCounter = 0
     totalGames = 0
     tieCounter = 0
-    while(totalGames < 100000):
+    while(totalGames < 1000000):
         
 
 
 
 
-        if(i == 1):
+        if(i == 0):
             dealCard(i, npDeck)
             #burn card
 
@@ -153,39 +153,44 @@ class BlackJackGame:
         print("Player Total Befor Action: " + str(totalPlayer))
         totalDealer = dealerFC + dealerSC
 
+
+
         print("Dealer Total Before Action: " + str(totalDealer))
         print("")
         print("")
         print("")
-        while(totalPlayer < 17):
-            newCard = dealCard(i, npDeck)
-            print("Player hit and recieved a " + newCard.value + " of " + newCard.color)
-            newCardValue = values.index(newCard.value)+2 if (values.index(newCard.value)+2) <= 10 else 10
-            if(newCard.value == "Ace"):
-                newCardValue = 11
-                playerHasAce = True
-            totalPlayer += newCardValue
-            if(totalPlayer > 21 and playerHasAce):
-                totalPlayer -= 10
-                playerHasAce = False
-            # print(totalPlayer)
-            i=i+1
-            if(checkI(i, npDeck)):
-                i = 0
 
-        while(totalDealer < 17):
-            newCard = dealCard(i, npDeck)
-            print("Dealer hit and recieved a " + newCard.value + " of " + newCard.color)
-            newCardValue = values.index(newCard.value)+2 if (values.index(newCard.value)+2) <= 10 else 10
-            if(newCard.value == "Ace"):
-                newCardValue = 11
-                dealerHasAce = True
-            totalDealer += newCardValue
-            if(totalDealer > 21 and dealerHasAce):
-                totalDealer -= 10
-            i=i+1
-            if(checkI(i, npDeck)):
-                i = 0
+        if(totalDealer != 21):
+            while(totalPlayer < 17):
+                newCard = dealCard(i, npDeck)
+                print("Player hit and recieved a " + newCard.value + " of " + newCard.color)
+                newCardValue = values.index(newCard.value)+2 if (values.index(newCard.value)+2) <= 10 else 10
+                if(newCard.value == "Ace"):
+                    newCardValue = 11
+                    playerHasAce = True
+                totalPlayer += newCardValue
+                if(totalPlayer > 21 and playerHasAce):
+                    totalPlayer -= 10
+                    playerHasAce = False
+                # print(totalPlayer)
+                i=i+1
+                if(checkI(i, npDeck)):
+                    i = 0
+            #if they bust dont run
+            if(totalPlayer <= 21):
+                while(totalDealer < 17):
+                    newCard = dealCard(i, npDeck)
+                    print("Dealer hit and recieved a " + newCard.value + " of " + newCard.color)
+                    newCardValue = values.index(newCard.value)+2 if (values.index(newCard.value)+2) <= 10 else 10
+                    if(newCard.value == "Ace"):
+                        newCardValue = 11
+                        dealerHasAce = True
+                    totalDealer += newCardValue
+                    if(totalDealer > 21 and dealerHasAce):
+                        totalDealer -= 10
+                    i=i+1
+                    if(checkI(i, npDeck)):
+                        i = 0
 
 
 
