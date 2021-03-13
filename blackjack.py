@@ -160,6 +160,8 @@ class BlackJackGame:
         print("")
         print("")
 
+        #beginning of strategy
+
         if(totalDealer != 21):
             while(totalPlayer < 17):
                 newCard = dealCard(i, npDeck)
